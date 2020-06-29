@@ -1,32 +1,59 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <CustomMenu></CustomMenu>
+    <main>
+      <router-view/>
+    </main>
+    <CustomFooter></CustomFooter>
   </div>
 </template>
 
+<script>
+import CustomMenu from '@/components/CustomMenu/CustomMenuComponent.vue'
+import CustomFooter from '@/components/CustomFooter/CustomFooterComponent.vue'
+
+export default {
+  name: 'App',
+  components: {
+    CustomMenu,
+    CustomFooter
+  },
+  created () {
+    console.log(process.env)
+  }
+}
+</script>
+
 <style>
-#app {
+html, body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  height: 100vh;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#app > * {
+  flex-shrink: 0;
+}
+
+#app {
   text-align: center;
-  color: #2c3e50;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+main {
+  flex-grow: 1;
 }
 </style>

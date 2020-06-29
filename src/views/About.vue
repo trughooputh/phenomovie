@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="About">
+    <h1 class="title my-4 is-capitalized is-size-1">About us</h1>
   </div>
 </template>
