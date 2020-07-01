@@ -1,8 +1,8 @@
 <template>
-  <div class="columns is-centered is-gapless">
+  <div class="MovieActions columns is-centered is-gapless">
     <div class="column is-4">
       <button
-        class="button is-success is-small"
+        class="MovieActions__Add button is-success is-small"
         title="Add to the cart"
         @click.stop.prevent="addToCart(movie)"
         v-if="!isMovieAdded"
@@ -13,7 +13,7 @@
         <span>Add</span>
       </button>
       <button
-        class="button is-danger is-small"
+        class="MovieActions__Remove button is-danger is-small"
         title="Remove from the cart"
         @click.stop.prevent="removeFromCart(movie)"
         v-else

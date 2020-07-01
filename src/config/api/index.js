@@ -1,9 +1,5 @@
 import axios from 'axios'
 
-const config = require('dotenv').config()
-
-console.log(config)
-
 const CONFIG = {
   BASE_URL: 'https://api.themoviedb.org/',
   V3: '3/',

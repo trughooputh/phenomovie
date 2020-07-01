@@ -26,13 +26,9 @@ export default {
   },
   actions: {
     addMovie: ({ commit, getters }, movie) => {
-      // First an action has been called
       const alreadyAddedMovie = getters.isMovieAdded(movie)
       if (!alreadyAddedMovie) {
-        // Then we fire the mutation
-        // setTimeout(() => {
         commit('ADD_MOVIE', movie)
-        // }, 2000)
       } else {
         alert('Movie already added')
       }
@@ -45,7 +41,7 @@ export default {
       if (state.categories.length === 0) {
         API.genres.list()
           .then((res) => {
-            console.log('categories loaded!')
+            console.log('Categories loaded!')
             commit('LOAD_CATEGORIES', res.data.genres)
           })
           .catch((error) => {
