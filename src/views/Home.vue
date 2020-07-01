@@ -7,14 +7,14 @@
       <h1 class="title my-4 is-capitalized is-size-1">Categories</h1>
     </div>
     <ul
-      class="columns is-multiline is-full is-centered"
+      class="Home__Categories columns is-multiline is-full is-centered"
       v-if="Categories"
     >
       <li
         class="column is-2 mx-5 my-3 hero is-light"
         v-for="({id, name}, index) in Categories"
         :key="index"
-        :style="getBackgroundCard(name)"
+        :style="{ backgroundImage: 'url(' + require('../assets/popcorn.jpeg') + ')' }"
       >
         <h3 class="is-size-7 has-text-white has-text-left is-uppercase">{{ name }}</h3>
         <router-link
@@ -48,22 +48,17 @@ export default {
     Categories () {
       return this.$store.state.categories
     }
-  },
-  methods: {
-    getBackgroundCard (categoryName) {
-      return `background-image: url("https://source.unsplash.com/220x309/weekly?${categoryName}")`
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .Home {
-  ul {
+  &__Categories {
     li {
       min-height: 300px;
       font-weight: bold;
-      background-size: contain;
+      background-size: cover;
     }
   }
   h3 {
