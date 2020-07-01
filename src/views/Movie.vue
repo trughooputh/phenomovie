@@ -71,7 +71,6 @@ export default {
       API.movie.details(movieId)
         .then((res) => {
           this.movie = res.data
-          console.log(this.movie)
         })
         .catch((error) => {
           console.log('error', error)

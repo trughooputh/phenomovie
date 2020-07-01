@@ -91,13 +91,13 @@ describe('MovieActions component', () => {
   });
 
   describe('When click on "Remove" button', () => {
-    const spyRemoveFromCart = jest.spyOn(wrapper.vm, 'removeFromCart')
     wrapper = shallowMount(MovieActions, {
       localVue: VueWithVuex,
       computed,
       store,
       propsData
     });
+    const spyRemoveFromCart = jest.spyOn(wrapper.vm, 'removeFromCart')
 
     const buttonRemove = wrapper.find('.MovieActions__Remove');
     buttonRemove.trigger('click');
@@ -107,7 +107,6 @@ describe('MovieActions component', () => {
         expect(spyRemoveFromCart).toHaveBeenCalled();
       });
     });
-
 
   });
 });

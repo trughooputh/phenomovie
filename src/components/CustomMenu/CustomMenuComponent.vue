@@ -2,38 +2,14 @@
   <nav class="customMenu hero is-light navbar">
     <div class="container">
       <div class="navbar-brand">
-        <Logo
-          class="mr-4 mt-2"
-        />
-        <span class="navbar-burger burger" data-target="navbarMenu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
+        <router-link
+          to="/"
+          class="navbar-item"
+        >
+          <Logo />
+        </router-link>
       </div>
       <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-start">
-          <div class="tabs">
-            <ul>
-              <li>
-                <router-link
-                  to="/"
-                  class="navbar-item"
-                >
-                  Home
-                </router-link>
-              </li>
-              <li>
-                <router-link
-                  to="/about"
-                  class="navbar-item"
-                >
-                  About
-                </router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
         <div class="navbar-end">
           <router-link
             to="/cart"

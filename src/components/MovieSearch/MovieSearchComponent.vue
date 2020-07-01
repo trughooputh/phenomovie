@@ -73,11 +73,9 @@ export default {
   methods: {
     searchMovie: debounce(function () {
       if (this.search) {
-        console.log('searchMovie', this.search)
         API.movie.search(this.search)
           .then((res) => {
             this.results = res.data.results
-            console.log(this.results)
           })
           .catch((error) => {
             console.log('error', error)

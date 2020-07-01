@@ -17,9 +17,6 @@ export default {
   components: {
     CustomMenu,
     CustomFooter
-  },
-  created () {
-    console.log(process.env)
   }
 }
 </script>

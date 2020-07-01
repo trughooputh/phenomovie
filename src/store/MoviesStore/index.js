@@ -1,7 +1,3 @@
-// import state from './state'
-// import mutations from './mutations'
-// import actions from './actions'
-// import getters from './getters'
 import { reject } from 'lodash'
 
 import API from './../../config/api'
@@ -41,7 +37,6 @@ export default {
       if (state.categories.length === 0) {
         API.genres.list()
           .then((res) => {
-            console.log('Categories loaded!')
             commit('LOAD_CATEGORIES', res.data.genres)
           })
           .catch((error) => {

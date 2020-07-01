@@ -42,14 +42,6 @@ export default {
     }
   },
   mounted () {
-    // Detect when scrolled to bottom.
-    // const listElm = document.querySelector('#Category__List')
-    // window.addEventListener('scroll', e => {
-    //   console.log(listElm.scrollTop, listElm.clientHeight, listElm.scrollHeight)
-    //   if (listElm.scrollTop + listElm.clientHeight >= listElm.scrollHeight) {
-    //     this.loadMore()
-    //   }
-    // })
     this.initLoadMovies()
   },
   methods: {
