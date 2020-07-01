@@ -8,10 +8,7 @@
         >
           <Logo />
         </router-link>
-      </div>
-      <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-end">
-          <router-link
+        <router-link
             to="/cart"
             class="navbar-item"
           >
@@ -20,7 +17,6 @@
             </span>
             <span>Cart ({{ moviesAdded.length }})</span>
           </router-link>
-        </div>
       </div>
     </div>
   </nav>

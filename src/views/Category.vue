@@ -8,7 +8,7 @@
         v-show="movies"
       >
         <li
-          class="Category__Item column is-2"
+          class="Category__Item column is-2 is-full-mobile"
           v-for="(movie, index) in movies"
           :key="index"
         >

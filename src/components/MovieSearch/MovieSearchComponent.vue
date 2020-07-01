@@ -1,5 +1,5 @@
 <template>
-  <div class="MovieSearch dropdown is-active">
+  <div class="MovieSearch dropdown is-active column is-half is-full-mobile is-offset-one-quarter">
     <div class="dropdown-trigger column is-full pb-0">
         <div class="field">
             <p class="control is-expanded has-icons-right">
@@ -94,7 +94,6 @@ export default {
 
 <style lang="scss" scoped>
 .MovieSearch {
-  width: 50%;
   &__Item {
     &:hover {
       background-color: #f4f4f4;
