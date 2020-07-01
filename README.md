@@ -71,3 +71,15 @@ Or
 ```
 npm run lint
 ```
+
+---
+### Next improvements
+- Stores by modules
+- Environment variables for private keys
+- Lazy-loading images
+- Unit testing improvements
+- SSR
+- Infinite scroll/Pagination
+- Fixed header
+- Transition between pages
+- Responsive improvements
