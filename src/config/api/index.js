@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const CONFIG = {
-  BASE_URL: 'http://www.omdbapi.com/',
+  BASE_URL: 'https://www.omdbapi.com/',
   API_KEY: 'cccb3e06'
 }
 const API = {
