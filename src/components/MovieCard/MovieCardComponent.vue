@@ -1,53 +1,53 @@
 <template>
   <div class="MovieCard">
     <div class="MovieCard__Poster card-image">
-      <figure class="image">
-        <img
-          :src="`http://image.tmdb.org/t/p/w500/${details.poster_path}`"
-          :alt="`${details.title} poster`"
-        >
+      <figure class="image is-centered">
+        <transition name="fade">
+          <img
+            v-if="HasImage"
+            :src="CurrentItemDetails.Poster"
+            key="main"
+            :alt="`${CurrentItemDetails.Title} poster`"
+          >
+        </transition>
       </figure>
-    </div>
-    <div
-      class="MovieCard__Details card-content"
-      v-if="showActions"
-    >
-      <MovieActions
-        :movie="details"
-      />
     </div>
   </div>
 </template>
 
 <script>
-import MovieActions from '@/components/MovieActions/MovieActionsComponent.vue'
-
 export default {
   name: 'MovieCard',
-  components: {
-    MovieActions
-  },
-  props: {
-    details: {
-      type: Object,
-      required: true
+  computed: {
+    HasImage () {
+      return this.CurrentItemDetails.Poster && this.CurrentItemDetails.Poster !== 'N/A'
     },
-    showActions: {
-      type: Boolean,
-      default: true
+    CurrentItemDetails () {
+      return this.$store.state.currentMovie || null
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$height-poster: 300px;
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+
 .MovieCard {
   overflow: hidden;
   position: relative;
   &:hover {
-    .MovieCard__Poster {
-      // opacity: 0.5;
-    }
     .MovieCard__Details {
       bottom: 0;
     }
@@ -55,7 +55,7 @@ export default {
   &__Poster {
     transition: opacity 0.3s cubic-bezier(0.7, 0, 0.3, 1);
     img {
-      max-height: 300px;
+      max-height: $height-poster;
       width: auto;
       margin: 0 auto;
     }

@@ -6,6 +6,7 @@
         v-if="actor.profile_path"
       >
         <img
+          v-if="actor.profile_path && actor.name"
           :src="`http://image.tmdb.org/t/p/w500/${actor.profile_path}`"
           :alt="`${actor.name} poster`"
         >

@@ -1,52 +1,36 @@
 <template>
-  <div class="MovieDetails">
-    <h1
-      class="title mb-0"
-      :class="{ 'is-size-4': isLight, 'is-size-2': !isLight }"
-    >
-      {{ movie.title }}
-    </h1>
-    <template
-      v-if="!isLight"
-    >
-      <span class="is-small">{{ movie.original_title}}</span>
-      <span class="is-small is-uppercase ml-1">•   {{ movie.original_language}}</span>
-      <p class="MovieDetails__Genres is-size-7 mb-2">
-        <router-link
-          v-for="(genre, index) in movie.genres"
-          :key="index"
-          :to="{ name: 'Category', params: { id: genre.id, name: encodeURI(genre.name.toLowerCase()) }}"
-        >
-          {{ genre.name }},
-        </router-link>
-        <span
-          v-if="!isLight"
-          class="is-italic"
-        >
-          {{ movie.runtime }}min
-        </span>
-        <span
-          class="ml-1"
-          v-if="movie.release_date"
-        >•   {{ movie.release_date.substring(0, 4) }}</span>
-      </p>
-    </template>
-    <span class="MovieDetails__Score tag is-black">{{ movie.vote_average }}</span>
+  <div class="MovieDetails mb-6">
+    <h3 class="title mb-0 is-size-3">
+      {{ CurrentItemDetails.Title }}
+      <span class="MovieDetails__Score tag is-black ml-1">{{ CurrentItemDetails.imdbRating }}</span>
+    </h3>
+    <span class="is-small">{{ CurrentItemDetails.Director }}  • {{ CurrentItemDetails.Production }}</span>
+    <span class="is-small ml-1">•   {{ CurrentItemDetails.Language}}</span>
+    <p class="MovieDetails__Genres is-size-7 mb-2">
+      <span>{{ CurrentItemDetails.Genre }}</span>
+      <span class="is-italic ml-1">•   {{ CurrentItemDetails.Runtime }}</span>
+      <span
+        class="ml-1"
+        v-if="CurrentItemDetails.Year"
+      >
+        •  {{ CurrentItemDetails.Year }}
+      </span>
+    </p>
+    <p class="MovieDetails__Actors">{{ CurrentItemDetails.Actors }}</p>
     <a
-      :href="movie.homepage"
+      v-if="CurrentItemDetails.Website && CurrentItemDetails.Website !== 'N/A'"
+      :href="CurrentItemDetails.Website"
       target="_blank"
       rel="noopener"
-      v-if="!isLight"
     >
       Official website
     </a>
     <section
-      v-if="!isLight"
       class="MovieDetails__Overview has-text-weight-medium mt-3"
     >
-      <h2 class="is-size-5">Overview</h2>
+      <h3 class="is-size-4 title mb-0">Overview</h3>
       <p class="is-size-6 is-italic">
-        {{ movie.overview }}
+        {{ CurrentItemDetails.Plot }}
       </p>
     </section>
   </div>
@@ -55,14 +39,9 @@
 <script>
 export default {
   name: 'MovieDetails',
-  props: {
-    movie: {
-      type: Object,
-      required: true
-    },
-    isLight: {
-      type: Boolean,
-      default: false
+  computed: {
+    CurrentItemDetails () {
+      return this.$store.state.currentMovie || null
     }
   }
 }

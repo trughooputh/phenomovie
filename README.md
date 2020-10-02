@@ -1,4 +1,4 @@
-# My Theresa Movie
+# LoveToKnow Media Movie
 
 VueJS application made with official [VueCLI](https://cli.vuejs.org/)
 
@@ -12,10 +12,6 @@ Vuex for store management
 
 Transpiled with Babel
 
-API used for getting data [TheMovieDatabase API](https://developers.themoviedb.org/3)
-
-Application deployed with [Netlify](https://my-t-movies.netlify.app/)
-Available here [https://my-t-movies.netlify.app/](https://my-t-movies.netlify.app/)
 
 ##### Framework & Libraries
 - Lodash, as utility library
@@ -79,7 +75,5 @@ npm run lint
 - Lazy-loading images
 - Unit testing improvements
 - SSR
-- Infinite scroll/Pagination
 - Fixed header
-- Transition between pages
 - Responsive improvements

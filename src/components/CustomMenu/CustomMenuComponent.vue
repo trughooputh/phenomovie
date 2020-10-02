@@ -1,5 +1,5 @@
 <template>
-  <nav class="customMenu hero is-light navbar">
+  <nav class="CustomMenu hero is-light navbar pt-3 px-5 pb-1">
     <div class="container">
       <div class="navbar-brand">
         <router-link
@@ -8,15 +8,6 @@
         >
           <Logo />
         </router-link>
-        <router-link
-            to="/cart"
-            class="navbar-item"
-          >
-            <span class="icon">
-              <i class="fas fa-shopping-cart"></i>
-            </span>
-            <span>Cart ({{ moviesAdded.length }})</span>
-          </router-link>
       </div>
     </div>
   </nav>
@@ -26,7 +17,7 @@
 import Logo from '@/components/Logo/LogoComponent.vue'
 
 export default {
-  name: 'LogoComponent',
+  name: 'CustomMenu',
   components: {
     Logo
   },
@@ -39,16 +30,13 @@ export default {
     isHome () {
       // return this.$nuxt.$route.name === 'index'
       return true
-    },
-    moviesAdded () {
-      return this.$store.state.movies
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.customMenu {
+.CustomMenu {
   padding: 20px 10px;
   a {
     font-weight: bold;

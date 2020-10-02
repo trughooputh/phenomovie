@@ -1,52 +1,60 @@
 <template>
   <section class="Home hero is-light">
     <div class="column is-12 mb-2">
-      <MovieSearch />
+      <h1 class="is-size-1">Search a movie</h1>
+      <MovieSearch
+        @update:search="updateSearch"
+      />
     </div>
-    <div class="container">
-      <h1 class="title my-4 is-capitalized is-size-1">Categories</h1>
-    </div>
-    <ul
-      class="Home__Categories columns is-multiline is-full is-centered"
-      v-if="Categories"
+    <Loader
+      v-if="isLoading"
+    />
+    <div
+      v-else
+      class="column is-full mb-5"
     >
-      <li
-        class="column is-2 mx-5 my-3 hero is-light"
-        v-for="({id, name}, index) in Categories"
-        :key="index"
-        :style="{ backgroundImage: 'url(' + require('../assets/popcorn.jpeg') + ')' }"
+      <Slider
+        v-if="Movies.length > 0"
+        :items="Movies"
+      />
+      <p
+        v-else
+        class="is-size-2"
       >
-        <h3 class="is-size-7 has-text-white has-text-left is-uppercase">{{ name }}</h3>
-        <router-link
-          class="button is-light is-small"
-          :to="{ name: 'Category', params: { id, name: encodeURI(name.toLowerCase()) }}"
-        >
-          <span class="icon">
-            <i class="fas fa-film"></i>
-          </span>
-          <span>View all movies</span>
-        </router-link>
-      </li>
-    </ul>
+        <i class="fa fa-frown mr-3" aria-hidden="true"></i>
+        <span class="h2">No results...</span>
+      </p>
+    </div>
   </section>
 </template>
 
 <script>
 import MovieSearch from '@/components/MovieSearch/MovieSearchComponent.vue'
+import Slider from '@/components/Slider/SliderComponent.vue'
+import Loader from '@/components/Loader/LoaderComponent.vue'
 
 export default {
   name: 'Home',
   components: {
-    MovieSearch
+    MovieSearch,
+    Slider,
+    Loader
   },
-  created () {
-    if (this.$store.state.categories.length === 0) {
-      this.$store.dispatch('loadCategories')
+  data () {
+    return {
+      isLoading: false
     }
   },
   computed: {
-    Categories () {
-      return this.$store.state.categories
+    Movies () {
+      return this.$store.state.movies
+    }
+  },
+  methods: {
+    updateSearch (newSearch) {
+      this.isLoading = true
+      this.$store.dispatch('searchMovies', newSearch)
+        .then(() => { this.isLoading = false })
     }
   }
 }
@@ -54,15 +62,17 @@ export default {
 
 <style lang="scss" scoped>
 .Home {
-  &__Categories {
+  &__Results {
     li {
       min-height: 300px;
       font-weight: bold;
       background-size: cover;
+      justify-content: center;
     }
   }
   h3 {
     text-shadow: 0px 2px 6px #000;
   }
 }
+
 </style>

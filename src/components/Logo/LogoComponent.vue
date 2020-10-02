@@ -1,11 +1,10 @@
 <template>
   <div class="Logo">
     <img
-      alt="MyTheresa logo"
-      src="../../assets/mytheresa-logo.png"
+      alt="LoveToKnow Media logo"
+      src="../../assets/ltkm-logo.png"
     >
-    <br>
-    <span class="Logo__Subtitle is-uppercase">Movie</span>
+    <span class="Logo__Subtitle is-uppercase">Movies</span>
   </div>
 </template>
 
@@ -16,7 +15,7 @@
   &__Subtitle {
     position: absolute;
     bottom: -5px;
-    left: 34px;
+    left: 25px;
     font-size: 10px;
   }
   img {

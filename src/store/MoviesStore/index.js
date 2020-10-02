@@ -1,43 +1,40 @@
-import { reject } from 'lodash'
-
-import API from './../../config/api'
+import API from '@/config/api'
 
 export const NAMESPACE = 'MoviesStore'
 
 export default {
   state: {
     movies: [],
-    categories: []
+    currentMovie: {}
   },
   mutations: {
-    ADD_MOVIE: (state, payload) => {
-      state.movies.push(payload)
-    },
-    REMOVE_MOVIE: (state, payload) => {
+    SET_MOVIES: (state, payload) => {
       state.movies = payload
     },
-    LOAD_CATEGORIES: (state, payload) => {
-      state.categories = payload
+    SET_CURRENT_MOVIE: (state, payload) => {
+      state.currentMovie = payload
     }
   },
   actions: {
-    addMovie: ({ commit, getters }, movie) => {
-      const alreadyAddedMovie = getters.isMovieAdded(movie)
-      if (!alreadyAddedMovie) {
-        commit('ADD_MOVIE', movie)
-      } else {
-        alert('Movie already added')
+    searchMovies: async ({ commit }, search) => {
+      if (search) {
+        await API.movie.search(search)
+          .then((res) => {
+            res.data.Search
+              ? commit('SET_MOVIES', res.data.Search)
+              : commit('SET_MOVIES', [])
+          })
+          .catch((error) => {
+            console.log('error', error)
+          })
       }
     },
-    removeMovie: ({ state, commit }, movie) => {
-      const filteredMovies = reject(state.movies, (el) => { return el.id === movie.id })
-      commit('REMOVE_MOVIE', filteredMovies)
-    },
-    loadCategories: ({ state, commit }) => {
-      if (state.categories.length === 0) {
-        API.genres.list()
+    updateCurrentMovie: async ({ commit }, id) => {
+      if (id) {
+        commit('SET_CURRENT_MOVIE', {})
+        await API.movie.details(id)
           .then((res) => {
-            commit('LOAD_CATEGORIES', res.data.genres)
+            commit('SET_CURRENT_MOVIE', res.data)
           })
           .catch((error) => {
             console.log('error', error)
@@ -45,9 +42,5 @@ export default {
       }
     }
   },
-  getters: {
-    isMovieAdded: (state) => {
-      return movieId => state.movies.find(item => item.id === movieId)
-    }
-  }
+  getters: {}
 }
