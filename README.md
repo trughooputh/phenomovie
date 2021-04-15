@@ -1,4 +1,4 @@
-# LoveToKnow Media Movie
+# Phenomovie
 
 VueJS application made with official [VueCLI](https://cli.vuejs.org/)
 
